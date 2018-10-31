@@ -14,16 +14,6 @@ import android.widget.Toast;
 import com.example.dtanp.masoi.control.StaticFirebase;
 import com.example.dtanp.masoi.control.StaticUser;
 import com.example.dtanp.masoi.model.User;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -41,11 +31,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-
-
-import org.json.JSONObject;
 
 public class login extends Activity implements View.OnClickListener {
 
@@ -58,9 +43,6 @@ public class login extends Activity implements View.OnClickListener {
     ImageButton btngg;
     private FirebaseDatabase database;
     private FirebaseAuth auth;
-    private static final String TAGs = login.class.getSimpleName();
-    CallbackManager callbackManager;
-    LoginButton fbLoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +55,6 @@ public class login extends Activity implements View.OnClickListener {
         btnlogin.setOnClickListener(this);
         btngg = findViewById(R.id.btngg);
         btngg.setOnClickListener(this);
-
-
-
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -98,42 +77,7 @@ public class login extends Activity implements View.OnClickListener {
             }
         });
 
-
-
-        //fb configure
-
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
-        fbLoginButton = (LoginButton) findViewById(R.id.login_button);
-
-        fbLoginButton.setReadPermissions("email");
-        fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAGs, "======Facebook login success======");
-                Log.d(TAGs, "Facebook Access Token: " + loginResult.getAccessToken().getToken());
-                Toast.makeText(login.this, "Login Facebook success.", Toast.LENGTH_SHORT).show();
-
-                getFbInfo();
-            }
-
-
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(login.this, "Login Facebook cancelled.", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.e(TAGs, "======Facebook login error======");
-                Log.e(TAGs, "Error: " + error.toString());
-                Toast.makeText(login.this, "Login Facebook error.", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
-
-
 
     public void startmhsignup()
     {
@@ -173,9 +117,7 @@ public class login extends Activity implements View.OnClickListener {
                                 }
                             });
                         } else {
-                            //System.out.println("Loi Dang Nhap");
-                            Toast.makeText(login.this,"tài khoản hoặc mật khẩu sai",Toast.LENGTH_SHORT).show();
-
+                            System.out.println("Loi Dang Nhap");
                         }
                     }
                 });
@@ -184,8 +126,6 @@ public class login extends Activity implements View.OnClickListener {
             signIn();
         }
     }
-
-
 
     public void startmh() {
         Intent intent = new Intent(this, home.class);
@@ -201,12 +141,7 @@ public class login extends Activity implements View.OnClickListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-
-
-        //super.onActivityResult(requestCode, resultCode, data);
 
         System.out.println("toi 5");
 
@@ -227,30 +162,7 @@ public class login extends Activity implements View.OnClickListener {
 
     }
 
-    //FB
-    private void getFbInfo() {
 
-        if (AccessToken.getCurrentAccessToken() != null) {
-            GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(final JSONObject me, GraphResponse response) {
-                            if (me != null) {
-                                Log.i("Login: ", me.optString("name"));
-                                Log.i("ID: ", me.optString("id"));
-
-                                Toast.makeText(login.this, "Name: " + me.optString("name"), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(login.this, "ID: " + me.optString("id"), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,link");
-            request.setParameters(parameters);
-            request.executeAsync();
-        }
-    }
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         System.out.println("toi ne");
         System.out.println(acct.getId());
@@ -278,5 +190,8 @@ public class login extends Activity implements View.OnClickListener {
                     }
                 });
     }
+
+
+
 
 }

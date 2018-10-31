@@ -7,20 +7,17 @@ public class Phong {
     private int cuoc;
     private int songuoi;
     private int ngay;
-    private int masoi;
-    private int dan;
     public Phong() {
     }
 
-    public Phong(String id, int sophong, String tenphong, int cuoc, int songuoi, int ngay, int masoi, int dan) {
+    public Phong(String id, int sophong, String tenphong, int cuoc, int songuoi, int ngay){
         this.id = id;
         this.sophong = sophong;
         this.tenphong = tenphong;
         this.cuoc = cuoc;
         this.songuoi = songuoi;
         this.ngay = ngay;
-        this.masoi = masoi;
-        this.dan = dan;
+
     }
 
     public String getId() {
@@ -71,19 +68,4 @@ public class Phong {
         this.ngay = ngay;
     }
 
-    public int getMasoi() {
-        return masoi;
-    }
-
-    public void setMasoi(int masoi) {
-        this.masoi = masoi;
-    }
-
-    public int getDan() {
-        return dan;
-    }
-
-    public void setDan(int dan) {
-        this.dan = dan;
-    }
 }

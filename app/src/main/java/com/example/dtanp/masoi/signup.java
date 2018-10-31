@@ -49,13 +49,11 @@ public class signup extends Activity {
                                 User us= new User(task.getResult().getUser().getUid().toString(),edtbirthday.getText().toString(),email,edtuser.getText().toString());
                                 StaticUser.user=us;
                                 reference.child("User").child(StaticUser.user.getId()).setValue(StaticUser.user);
-                              reference.child("userlist").child(StaticUser.user.getId()).setValue(StaticUser.user.getUser());
                                 startmh();
                                 finish();
                             }
                             else
                             {
-                                //Toast.makeText(signup.this,"tài khoản or mật khẩu sai",Toast.LENGTH_SHORT).show();
                                 System.out.println("Khong thanh cong");
                             }
                     }
@@ -63,7 +61,6 @@ public class signup extends Activity {
             }
         });
     }
-
     public void startmh()
     {
         Intent intent = new Intent(this,home.class);
