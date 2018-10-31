@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="50dp"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        >
+        <ImageView
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="3dp"
+            android:layout_width="37dp"
+            android:layout_height="45dp"
+            android:background="@drawable/username"/>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="180dp"
+        android:layout_height="43dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtids"
+            android:layout_width="180dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="1dp"
+
+            android:textSize="14dp"
+            android:layout_marginLeft="40dp"
+            android:text="user"/>
+
+
+        <TextView
+            android:id="@+id/txtbanne"
+            android:layout_marginTop="5dp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:text="gmail"
+            android:textColor="#000"
+            android:textSize="12dp"
+
+
+            android:layout_marginLeft="40dp"
+            />
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="80dp"
+            android:layout_height="40dp">
+
+            <Button
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="thêm"
+                android:textSize="13dp"
+                android:id="@+id/btnthem"
+
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
